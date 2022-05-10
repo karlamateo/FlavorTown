@@ -8,3 +8,5 @@ unsolved problems
 reset button wont work - you have to refresh the page/game manually.
 
 live site-link - http://127.0.0.1:5500/index.html
+
+Code along help from - https://youtu.be/Y-GkMjUZsmM
