@@ -46,10 +46,7 @@ function handleClick(e){
         setBoxHoverClass()
     }
 
-    //place shapes
-    //check for win
-    //check for draw
-    //switch turns
+  
     
 }
 
