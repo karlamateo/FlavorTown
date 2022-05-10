@@ -1,69 +1,158 @@
+*,*::after, *::before {
+    box-sizing: border-box;
+}
+
 *{
-    padding: 0%;
-    margin: 0%;
-    font-family: monospace ;
+    background-color:white;
+}
+body{
+    margin: 0;
+
 }
 
-#front{
-color: white;
-text-align: center;
-font-size: 50px;
-margin-top: 20%;
-}
-
-.background{
-    background-color: #E5C7F3;
-    height: 100vh;
-    padding-top: 1px;
+:root{
+    --tile-size:100px;
+    --object-size: calc(var(--tile-size) * .7);
 }
 
 
-
-.title{
-    color: white;
-    text-align: center;
-    font-size: 40px;
-    margin-top: 10%;
-}
-
-.display{
-    color:white;
-    font-size: 25px;
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 1em;    
-}
-
-#start{
-    align-items: center;
-}
-
-.hide{
-    display: none;
-}
-
-.container{
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 31% 31% 31%;
-    grid-template-rows: 31% 31% 31%;
-    max-width:300px ;
-}
+/* THIS IS THE GRID CSS >>>>*/
 
 .box{
-    border: 1px solid;
-    border-color: white;
-    min-width: 100px;
-    min-height: 100px;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns:repeat(3,auto);
+
+}
+
+/* THIS IS THE CSS FOR THE INDIVIDUAL BOXES >>>>*/
+
+.tile{
+    width: var(--tile-size);
+    height: var(--tile-size);
+    background-color:grey;
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
     cursor: pointer;
+  
+}
+/*TAKES OFF THE BORDER >>>>>*/
+
+.tile:first-child,
+.tile:nth-child(2),
+.tile:nth-child(3)
+{
+    border-top: none;
+    
 }
 
+.tile :last-child,
+.tile:nth-child(8),
+.tile:nth-child(7){
+    border-bottom: none;
+}
+
+.tile:nth-child(3n + 1){
+    border-left: none;
+}
+
+.tile:nth-child(3n + 3){
+    border-right: none;
+}
+
+/* THIS IS THE CSS FOR THE SQUARE >>>>>*/
+.tile.square::after,
+.tile.square::before{
+    background-color: #050699;
+}
+
+
+.tile:not(.square):not(.circle):hover::before,
+.tile:not(.square):not(.circle):hover::after{
+    background-color:#6566d5 ;
+}
+
+
+.tile.square::before,
+.tile.square::after,
+.box.square .tile:not(.square):not(.circle):hover::before,
+.box.square .tile:not(.square):not(.circle):hover::after{ 
+    content:'';
+    width: var(--object-size);
+    height: var(--object-size);
+    position: absolute;
+
+}
+
+/* THIS IS THE CSS FOR THE CIRCLE >>>>>>>*/
+
+/* hover colors*/
+.tile.circle::before,
+.tile.circle::after{
+    background-color: #ff0000;
+}
+
+
+.box.circle .tile:not(.square):not(.circle):hover::before,
+.box.circle .tile:not(.square):not(.circle):hover::after{
+    background-color: #d98880;
+}
+
+
+.tile.circle::before,
+.tile.circle::after,
+.box.circle .tile:not(.square):not(.circle):hover::before,
+.box.circle .tile:not(.square):not(.circle):hover::after
+{
+    content:'';
+    width: var(--object-size);
+    height: var(--object-size);
+    position: absolute;
+    border-radius: 50%;
+}
+
+/* THOS IS THE CSS FOR THE CURSOR >>>>> */
+.tile.square, .tile.circle{
+    cursor: not-allowed;
+}
+
+
+
+/*DISPLAY FOR WINNING PLAYER AND RESTART BUTTON>>>>>>>>*/
+
+
+.winner-display{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom:0;
+    right:0;
+    left: 0;
+    background-color: rgba(0,0,0,.75);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.winner-display.show{
+    display: flex;
+}
+
+
+
+
+
+
 .button{
-    background-color: #c338ff;
+    background-color: black;
     color: white;
     padding: 1em;
     position: relative;
@@ -71,26 +160,23 @@ margin-top: 20%;
     display: flex;
     text-align: center;
     
+    
 }
 
-.playerK{ 
-    color: #8ee53f;
-}
-
-.playerM{
-    color: #febb44
-}
-
-.controls{
+#button{
+    background-color: grey;
+    color: white;
+    padding: 1em;
+    position: relative;
+    text-decoration: none;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
+    text-align: center;
 }
 
-#reset{
-    background-color: #38b8ff;
+
+
+.reset{
+    background-color: black;
     color:white;
     padding: 8px;
     border-radius: 8px;
@@ -98,4 +184,24 @@ margin-top: 20%;
     font-size: 20px;
     margin-left: 1em;
     cursor: pointer;
+    font-size: 2rem;
+    
 }
+.reset:hover{
+    background-color: white;
+    color: black;
+    border-color:white ;
+}
+
+#winner{
+font-size: 72px;
+    background: -webkit-linear-gradient(#ff0000, #050699);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;}
+
+    h1{
+        font-size: 70px;
+        text-align: center;
+       font-family: Microsoft YaHei;
+
+    }
